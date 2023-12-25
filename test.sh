@@ -4,12 +4,11 @@ num_tests=5
 total_time=0
 log_file="test_log.txt"
 
-echo "Running $num_tests tests of your Python script..."
+echo "Running $num_tests tests..."
 echo "Results will be logged to: $log_file"
-echo
 
 # Create or truncate the log file
-echo "" > "$log_file"
+echo "TEST FILE" > "$log_file"
 
 for ((i=1; i<=$num_tests; i++)); do
     start_time=$(date +%s%N)
