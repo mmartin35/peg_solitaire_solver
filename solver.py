@@ -59,8 +59,8 @@ def main():
     timeout = 0
     limit = 1
     board = [row.copy() for row in initial_board]
-    while count_ones_left(board) > limit:
-        if (timeout >= 500):
+    while count_ones_left(board) > limit or board[3][3] == 0:
+        if (timeout >= 250):
             board = [row.copy() for row in initial_board]
             timeout = 0
         pos = Position(random.randint(0, 6), random.randint(0, 6))
