@@ -20,9 +20,9 @@ class Position:
         self.y = y
 
 def draw_board(board):
-    print("------------")
     for row in board:
         print(row)
+    print("\n")
 
 # d = direction of try (0 = up, 1 = right, 2 = down, 3 = left)
 def move_board(board, x, y, d):
@@ -56,22 +56,20 @@ def count_ones_left(board):
     return count
 
 def main():
-    limit = 11
-    timeout = 100
+    timeout = 0
+    limit = 1
     board = [row.copy() for row in initial_board]
-    while count_ones_left(board) != limit and timeout != 0:
-        if (timeout == 0):
+    while count_ones_left(board) > limit:
+        if (timeout >= 500):
             board = [row.copy() for row in initial_board]
-            timeout = 100
-        pos = Position(random.randint(1, 6), random.randint(1, 6))
-        while board[pos.y][pos.x] == 2:
-            pos = Position(random.randint(1, 6), random.randint(1, 6))
+            timeout = 0
+        pos = Position(random.randint(0, 6), random.randint(0, 6))
+        while board[pos.y][pos.x] != 1:
+            pos = Position(random.randint(0, 6), random.randint(0, 6))
         move_direction = try_move(board, pos)
         if move_direction is not None:
             move_board(board, pos.x, pos.y, move_direction)
-            timeout += 5
-        else:
-            timeout -= 1
+        timeout += 1
     draw_board(board)
 
         #time.sleep(1)
